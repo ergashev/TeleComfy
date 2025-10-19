@@ -1,0 +1,19 @@
+{
+  "nodes": [
+    { "type": "prompt", "node_ids": ["111"], "key": "prompt" },
+    { "type": "negative_prompt", "node_ids": ["110"], "key": "prompt" },
+
+    { "type": "model", "node_ids": ["37"], "key": "unet_name" },
+    { "type": "steps", "node_ids": ["3"], "key": "steps" },
+    { "type": "seed", "node_ids": ["3"], "key": "seed" },
+    { "type": "width", "node_ids": ["112"], "key": "width" },
+    { "type": "height", "node_ids": ["112"], "key": "height" },
+    { "type": "n", "node_ids": ["112"], "key": "batch_size" },
+
+    { "type": "input_images", "node_ids": ["78","106","108","120","121","122","123","124","125","126"], "key": "image" }
+  ],
+  "defaults": {
+    "model": "qwen_image_edit_2509_fp8_e4m3fn.safetensors",
+    "negative_prompt": null
+  }
+}

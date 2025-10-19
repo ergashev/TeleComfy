@@ -1,0 +1,19 @@
+{
+  "alias": "flux_t2i",
+  "title": "Text to Image (Flux-Krea, 20 steps)",
+  "description": "Generation of images by text prompt",
+  "permissions": {"members_can_trigger": true},
+  "defaults": {
+    "model": "flux1-krea-dev_fp8_scaled.safetensors",
+    "width": 1024,
+    "height": 1024,
+    "steps": 20,
+    "n": 1
+  },
+  "inline_allowed": ["width", "height", "seed"],
+  "inline_limits": {
+    "width":  { "min": 100, "max": 2560 },
+    "height": { "min": 100, "max": 2560 }
+  },
+  "icon_custom_emoji_id": "5310039132297242441"
+}

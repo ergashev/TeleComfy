@@ -1,0 +1,14 @@
+{
+  "nodes": [
+    { "type": "prompt", "node_ids": ["6"], "key": "text" },
+    { "type": "negative_prompt", "node_ids": ["7"], "key": "text" },
+    { "type": "model", "node_ids": ["4"], "key": "ckpt_name" },
+    { "type": "steps", "node_ids": ["3"], "key": "steps" },
+    { "type": "seed", "node_ids": ["3"], "key": "seed" },
+    { "type": "n", "node_ids": ["11"], "key": "batch_size" },
+    { "type": "length", "node_ids": ["11"], "key": "seconds" }
+  ],
+  "defaults": {
+    "negative_prompt": null
+  }
+}

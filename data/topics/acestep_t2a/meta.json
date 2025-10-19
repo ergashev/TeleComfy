@@ -1,0 +1,24 @@
+{
+  "alias": "acestep_t2a",
+  "title": "Text to Audio (AceStep Audio, Instrumental, 50 steps)",
+  "description": "Generation of music by tags (prompt)",
+  "permissions": { "members_can_trigger": true },
+  "defaults": {
+    "model": "ace_step_v1_3.5b.safetensors",
+    "steps": 50,
+    "length": 15,
+    "n": 1,
+    "seed": null,
+    "cfg": 5,
+    "sampler_name": "euler",
+    "scheduler": "simple",
+    "denoise": 1,
+    "lyrics": "[instrumental]",
+    "lyrics_strength": 1.0
+  },
+  "inline_allowed": ["length", "seed"],
+  "inline_limits": {
+    "length": { "min": 5, "max": 60 }
+  },
+  "emoji": "🎵"
+}

@@ -1,0 +1,21 @@
+{
+  "nodes": [
+    { "type": "prompt", "node_ids": ["14"], "key": "tags" },
+
+    { "type": "lyrics", "node_ids": ["14"], "key": "lyrics" },
+    { "type": "lyrics_strength", "node_ids": ["14"], "key": "lyrics_strength" },
+
+    { "type": "model", "node_ids": ["40"], "key": "ckpt_name" },
+
+    { "type": "length", "node_ids": ["17"], "key": "seconds" },
+    { "type": "n", "node_ids": ["17"], "key": "batch_size" },
+
+    { "type": "steps", "node_ids": ["52"], "key": "steps" },
+    { "type": "seed", "node_ids": ["52"], "key": "seed" },
+    { "type": "cfg", "node_ids": ["52"], "key": "cfg" },
+    { "type": "sampler_name", "node_ids": ["52"], "key": "sampler_name" },
+    { "type": "scheduler", "node_ids": ["52"], "key": "scheduler" },
+    { "type": "denoise", "node_ids": ["52"], "key": "denoise" }
+  ],
+  "defaults": { }
+}

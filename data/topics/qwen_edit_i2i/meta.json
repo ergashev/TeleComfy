@@ -1,0 +1,18 @@
+{
+  "alias": "qwen_edit_i2i",
+  "title": "Image to Image (Qwen-Image-Edit-2509, 8 steps)",
+  "description": "Editing/generation based on multiple input images (1–10) and a prompt",
+  "permissions": { "members_can_trigger": true },
+  "defaults": {
+    "width": 0,
+    "height": 0,
+    "steps": 8,
+    "n": 1,
+    "negative_prompt": ""
+  },
+  "icon_custom_emoji_id": "5310039132297242441",
+  "inline_allowed": ["steps", "seed"],
+  "inline_limits": {
+    "steps": { "min": 1, "max": 50 }
+  }
+}

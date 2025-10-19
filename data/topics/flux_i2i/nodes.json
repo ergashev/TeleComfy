@@ -1,0 +1,10 @@
+{
+  "nodes": [
+    { "type": "prompt", "node_ids": ["6"], "key": "text" },
+    { "type": "model",  "node_ids": ["37"], "key": "unet_name" },
+    { "type": "steps",  "node_ids": ["31"], "key": "steps" },
+    { "type": "seed",   "node_ids": ["31"], "key": "seed" },
+    { "type": "input_image", "node_ids": ["142"], "key": "image" }
+  ],
+  "defaults": {}
+}

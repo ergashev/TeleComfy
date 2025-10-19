@@ -1,0 +1,19 @@
+{
+  "alias": "flux_i2i",
+  "title": "Image to Image (Flux-Kontext, 20 steps)",
+  "description": "Editing an image based on a text prompt",
+  "permissions": {"members_can_trigger": true},
+  "defaults": {
+    "model": "flux1-dev-kontext_fp8_scaled.safetensors",
+    "steps": 20,
+    "width": 0,
+    "height": 0,
+    "n": 1
+  },
+  "inline_allowed": ["width", "height", "seed"],
+  "inline_limits": {
+    "width":  { "min": 100, "max": 2560 },
+    "height": { "min": 100, "max": 2560 }
+  },
+  "icon_custom_emoji_id": "5310039132297242441"
+}

@@ -1,0 +1,17 @@
+{
+  "alias": "sa_t2a",
+  "title": "Text to Audio (Stable Audio Open, 50 steps)",
+  "description": "Генерация музыкальных клипов по текстовому описанию",
+  "permissions": { "members_can_trigger": true },
+  "defaults": {
+    "model": "stable-audio-open-1.0.safetensors",
+    "steps": 50,
+    "length": 15,
+    "n": 1,
+    "negative_prompt": ""
+  },
+  "inline_limits": {
+    "length": { "min": 1, "max": 300 }
+  },
+  "emoji": "🎵"
+}

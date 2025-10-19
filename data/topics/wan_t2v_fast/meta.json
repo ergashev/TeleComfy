@@ -1,0 +1,24 @@
+{
+  "alias": "wan_t2v_fast",
+  "title": "⚡️Text to Video (WAN 2.2, Fast, 4 steps)",
+  "description": "Fast video generation from text on WAN 2.2. Supports inline: steps, width, height, n, seed, fps, length.",
+  "permissions": { "members_can_trigger": true },
+  "defaults": {
+    "width": 640,
+    "height": 640,
+    "length": 81,
+    "n": 1,
+    "fps": 16,
+    "steps": 4,
+    "negative_prompt": "色调艳丽，过曝，静态，细节模糊不清，字幕，风格，作品，画作，画面，静止，整体发灰，最差质量，低质量，JPEG压缩残留，丑陋的，残缺的，多余的手指，画得不好的手部，画得不好的脸部，畸形的，毁容的，形态畸形的肢体，手指融合，静止不动的画面，杂乱的背景，三条腿，背景人很多，倒着走，裸露，NSFW"
+  },
+  "inline_allowed": ["width", "height", "fps", "length", "steps", "seed"],
+  "inline_limits": {
+    "width":  { "min": 100, "max": 960 },
+    "height": { "min": 100, "max": 960 },
+    "fps": { "min": 10, "max": 20 },
+    "length": { "min": 10, "max": 100 },
+    "steps": { "min": 4, "max": 30 }
+  },
+  "emoji": "🎬"
+}

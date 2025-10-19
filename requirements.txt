@@ -1,0 +1,4 @@
+aiogram>=3.7.0
+python-dotenv>=1.0.1
+websocket-client>=1.8.0
+PyYAML>=6.0.2

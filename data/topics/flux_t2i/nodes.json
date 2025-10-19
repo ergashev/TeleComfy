@@ -1,0 +1,14 @@
+{
+  "nodes": [
+    {"type": "prompt", "node_ids": ["45"], "key": "text"},
+    {"type": "model", "node_ids": ["38"], "key": "unet_name"},
+    {"type": "width", "node_ids": ["27"], "key": "width"},
+    {"type": "height", "node_ids": ["27"], "key": "height"},
+    {"type": "steps", "node_ids": ["31"], "key": "steps"},
+    {"type": "seed", "node_ids": ["31"], "key": "seed"},
+    {"type": "n", "node_ids": ["27"], "key": "batch_size"}
+  ],
+  "defaults": {
+    "negative_prompt": null
+  }
+}

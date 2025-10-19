@@ -1,0 +1,19 @@
+{
+  "nodes": [
+    { "type": "prompt",           "node_ids": ["93"],          "key": "text" },
+    { "type": "negative_prompt",  "node_ids": ["89"],          "key": "text" },
+
+    { "type": "width",            "node_ids": ["98"],          "key": "width" },
+    { "type": "height",           "node_ids": ["98"],          "key": "height" },
+    { "type": "length",           "node_ids": ["98"],          "key": "length" },
+    { "type": "n",                "node_ids": ["98"],          "key": "batch_size" },
+
+    { "type": "steps",            "node_ids": ["85", "86"],    "key": "steps" },
+    { "type": "seed",             "node_ids": ["85", "86"],    "key": "noise_seed" },
+
+    { "type": "fps",              "node_ids": ["94"],          "key": "fps" },
+
+    { "type": "input_image",      "node_ids": ["97"],          "key": "image" }
+  ],
+  "defaults": { }
+}

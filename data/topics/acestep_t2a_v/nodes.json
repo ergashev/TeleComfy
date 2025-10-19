@@ -1,0 +1,13 @@
+{
+  "nodes": [
+    { "type": "prompt", "node_ids": ["14"], "key": "tags" },
+    { "type": "text:text", "node_ids": ["14"], "key": "lyrics" },
+    { "type": "steps", "node_ids": ["52"], "key": "steps" },
+    { "type": "seed", "node_ids": ["52"], "key": "seed" },
+    { "type": "length", "node_ids": ["17"], "key": "seconds" },
+    { "type": "model", "node_ids": ["40"], "key": "ckpt_name" }
+  ],
+  "defaults": {
+    "negative_prompt": null
+  }
+}

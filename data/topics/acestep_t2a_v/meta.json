@@ -1,0 +1,17 @@
+{
+  "alias": "acestep_t2a_v",
+  "title": "Text to Audio (AceStep Audio, Prompt + Text(song), 50 steps)",
+  "description": "Generation of audio based on a description (prompt) and additional text (text), such as song lyrics.",
+  "permissions": { "members_can_trigger": true },
+  "defaults": {
+    "steps": 50,
+    "seed": null,
+    "length": 120,
+    "model": "ace_step_v1_3.5b.safetensors"
+  },
+  "inline_allowed": ["steps", "seed", "length", "text"],
+  "inline_limits": {
+    "length": { "min": 1, "max": 500 }
+  },
+  "icon_custom_emoji_id": "5382003830487523366"
+}
