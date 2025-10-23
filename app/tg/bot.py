@@ -190,9 +190,7 @@ async def create_bot_app(
         needs_multi = any(r.type == "input_images" for r in topic_cfg.nodes_map.nodes)
         needs_single = any(r.type == "input_image" for r in topic_cfg.nodes_map.nodes)
 
-        # Determine reply target:
-        # - explicit override (used in forward-on-regen flow); else
-        # - always reply to the first message of the current user input (do NOT inherit user’s own reply)
+        # Determine reply target
         reply_target_id: Optional[int] = reply_to_override if reply_to_override is not None else ref.message_id
 
         # Build source ids list for regen (sorted)
@@ -200,9 +198,17 @@ async def create_bot_app(
         if source_ids_override is not None:
             source_ids = list(source_ids_override)
 
-        # Attribute the job to the real initiator if provided (e.g., callback user),
-        # otherwise try to use the message author; fallback to 0.
-        user_id_for_limits = acting_user_id if acting_user_id is not None else (ref.from_user.id if ref.from_user else 0)
+        # Attribute job to the real initiator if provided; else:
+        # - If message is authored "as channel/group" (anonymous admin) — disable per-user limit (user_id=0);
+        # - Otherwise use explicit from_user.
+        if acting_user_id is not None:
+            user_id_for_limits = acting_user_id
+        else:
+            is_anon_like = bool(ref.sender_chat and ref.chat and ref.sender_chat.id == ref.chat.id)
+            if is_anon_like:
+                user_id_for_limits = 0
+            else:
+                user_id_for_limits = ref.from_user.id if ref.from_user else 0
 
         if needs_multi:
             if not images:
@@ -398,9 +404,14 @@ async def create_bot_app(
     async def topic_scan(message: Message) -> None:
         if message.chat is None or message.chat.id != config.allowed_chat_id:
             return
+
+        # Robust anonymous admin detection:
+        # "Anonymous admin as group" -> sender_chat is the same as the chat itself.
+        is_anon_like = bool(message.sender_chat and message.chat and message.sender_chat.id == message.chat.id)
+
         is_admin = False
-        # Anonymous admin (message from a channel on behalf of the chat)
-        if message.from_user is None and message.sender_chat and message.sender_chat.id == message.chat.id:
+        if is_anon_like:
+            # Treat as admin (no user id to check)
             is_admin = True
         elif message.from_user:
             try:
@@ -409,9 +420,11 @@ async def create_bot_app(
             except Exception:
                 await message.reply(i18n.t("err_check_admin_rights"))
                 return
+
         if not is_admin:
             await message.reply(i18n.t("err_admins_only"))
             return
+
         await message.reply(i18n.t("scan_start"))
         created, updated, deleted = await topics_repo.scan_and_sync(bot, message.chat.id)
         await topics_repo.reload_cache()
@@ -428,7 +441,6 @@ async def create_bot_app(
     @dp.message(
         F.chat.type.in_({ChatType.SUPERGROUP}),
         F.message_thread_id,  # only messages in topics
-        ~F.from_user.is_bot,
     )
     async def on_topic_message(message: Message) -> None:
         if message.chat is None or message.chat.id != config.allowed_chat_id:
@@ -436,6 +448,19 @@ async def create_bot_app(
         thread_id = message.message_thread_id
         if thread_id is None:
             return
+
+        # Recognize "anonymous admin as group"
+        is_anon_like = bool(message.sender_chat and message.chat and message.sender_chat.id == message.chat.id)
+
+        # 1) Drop any "send as channel" or foreign sender_chat (channel-authored) message
+        if message.sender_chat and not is_anon_like:
+            # This is a message authored as some channel (or another chat) -> do not process
+            return
+
+        # 2) Drop bot-authored messages except the "anonymous admin as group" case
+        if message.from_user and message.from_user.is_bot and not is_anon_like:
+            return
+
         topic_cfg: Optional[TopicConfig] = topics_repo.resolve_by_thread_id(thread_id)
         if not topic_cfg:
             # Not associated, ask admin to run /topic_scan

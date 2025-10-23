@@ -27,10 +27,11 @@ async def main():
         run_timeout=config.timeout_run,
     )
 
-    # Initialize topics repository
+    # Initialize topics repository (per-chat index)
     topics_repo = TopicsRepository(
         workdir=config.workdir,
         state_dir=config.state_dir,
+        chat_id=config.allowed_chat_id,
     )
     await topics_repo.reload_cache()
     loaded = topics_repo.all_topics()

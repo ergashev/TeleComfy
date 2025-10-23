@@ -7,19 +7,23 @@ from aiogram import Bot
 from app.domain.models import TopicConfig, NodesMap, NodeRule
 
 log = logging.getLogger("topics_repo")
-INDEX_FILE = "topics_index.json"
 
 
 class TopicsRepository:
     """
     File-based topics repository. Scans a workdir with topic directories and
-    maintains an index mapping alias -> forum topic_id (state/topics_index.json).
+    maintains a per-chat index mapping alias -> forum topic_id.
+
+    Index file path (per chat):
+      state/topics_index_<chat_id>.json
     """
 
-    def __init__(self, workdir: str, state_dir: str):
+    def __init__(self, workdir: str, state_dir: str, chat_id: int):
         self.workdir = workdir
         self.state_dir = state_dir
-        self.index_path = os.path.join(self.state_dir, INDEX_FILE)
+        self.chat_id = chat_id
+        # Store index per chat id to avoid overwriting when ALLOWED_CHAT_ID changes
+        self.index_path = os.path.join(self.state_dir, f"topics_index_{self.chat_id}.json")
         os.makedirs(self.workdir, exist_ok=True)
         os.makedirs(self.state_dir, exist_ok=True)
         self._cache_by_alias: Dict[str, TopicConfig] = {}
@@ -195,7 +199,7 @@ class TopicsRepository:
 
     async def scan_and_sync(self, bot: Bot, chat_id: int) -> Tuple[int, int, int]:
         """
-        Scan topics and sync with the forum.
+        Scan topics and sync with the forum for the given chat.
         Returns tuple: (created, updated, deleted).
         """
         discovered = self.scan()

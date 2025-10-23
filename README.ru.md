@@ -4,6 +4,12 @@
 
 **TeleComfy** - умный Telegram‑бот для супергрупп с форумными темами: генерирует изображения, видео и аудио через интеграцию с ComfyUI по вашим сообщениям в нужных темах. Где каждая тема является отдельным полноценным workflow ComfyUI. Бот поддерживает очереди с лимитами, отмену задач, повторную генерацию, мультиязычный интерфейс (ru/en/zh) и работу с альбомами изображений.
 
+<p align="center">
+    <img src="assets/TeleComfy_demo.png" alt="TeleComfy Demo">
+</p>
+
+[@TeleComfy_demo](https://t.me/TeleComfy_demo)
+
 ## Основные возможности
 
 - Генерация через ComfyUI: POST /prompt + WebSocket /ws + /history → /view

@@ -4,6 +4,12 @@
 
 **TeleComfy** 是一款面向启用“论坛主题”的 Telegram 超级群的智能机器人：它会在指定主题中，基于你的消息，通过集成 ComfyUI 生成图像、视频和音频。每个主题都对应一个独立且完整的 ComfyUI 工作流。机器人支持带限额的队列、任务取消、再次生成、多语言界面（zh/ru/en），以及图片相册处理。
 
+<p align="center">
+    <img src="assets/TeleComfy_demo.png" alt="TeleComfy Demo">
+</p>
+
+[@TeleComfy_demo](https://t.me/TeleComfy_demo)
+
 ## 主要特性
 
 - 基于 ComfyUI 的生成流程：POST /prompt + WebSocket /ws + /history → /view
